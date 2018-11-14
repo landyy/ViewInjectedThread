@@ -6,7 +6,7 @@ Project for CSEC464. Get Injected threads of a process on a system that have bee
 
 Injectview will then display if there are any threads that have been injected with along with a count displayed at the end.
 
-## Explination
+## Explanation
 
 Injected view uses the Windows native API to query information about threads that cannot be obtained through the normal API. The API call that is being used is NtQueryInformationThread. Because this is a native function, it is not exported, and we must manually export it. To do this, we can use a function called GetPRocAddress. This will do the dirty work of searching through the Dll and grabbing the address of the function. We can then use this with a custom function to call the function directly. 
 
