@@ -1,3 +1,5 @@
 #pragma once
+#include "helper.h"
 
-void FindInjectedThread(DWORD Pid);
+
+MalicousThreads FindInjectedThread(DWORD Pid);

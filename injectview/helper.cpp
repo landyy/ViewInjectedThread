@@ -1,24 +1,38 @@
 
 #include "stdafx.h"
 #include "injectview.h"
+#include "print.h"
 
 void PrintUsage() {
 	std::wcout << L"Usage: " << L"./injectview" << L" [-ph]" << std::endl;
 }
+
 void FindInjectedAll() {
 
 	HANDLE ProcessSnap = NULL;
 	PROCESSENTRY32 pe32 = { 0 };
 	pe32.dwSize = sizeof(PROCESSENTRY32);
+	MalicousThreads TempMalThreads;
+	MalicousThreads FinalMalThreads;
+
+	FinalMalThreads.BadThreadCount = 0;
+	TempMalThreads.BadThreadCount = 0;
 
 	ProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
 	do {
 
-		FindInjectedThread(pe32.th32ProcessID);
+		if (pe32.th32ProcessID != 0) {
+
+			//create a list using vectors to keep track of all the bad threads
+			TempMalThreads = FindInjectedThread(pe32.th32ProcessID);
+			FinalMalThreads.BadThreadVector.insert(FinalMalThreads.BadThreadVector.end(), TempMalThreads.BadThreadVector.begin(), TempMalThreads.BadThreadVector.end());
+		}
 
 	} while (Process32Next(ProcessSnap, &pe32));
 
+	//Now print the results
+	PrintBadThreads(FinalMalThreads);
 
 }
 
@@ -29,7 +43,6 @@ BOOL IsProtectedProcess(DWORD Pid) {
 	HANDLE ProcessHandle;
 	ULONG PsExtendedInfoBuf;
 	NTSTATUS Status = 0;
-	DWORD Error;
 	BOOL IsWow64 = false;
 	NtQueryProcessInformationPointer NtQueryProcessInformation;
 	
@@ -71,8 +84,6 @@ BOOL IsProtectedProcess(DWORD Pid) {
 		return PsExtendedInfo.IsProtectedProcess;
 
 	}
-
-	
 
 }
 

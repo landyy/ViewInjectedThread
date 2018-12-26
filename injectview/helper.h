@@ -1,5 +1,11 @@
 #pragma once
 
+struct MalicousThreads
+{
+	DWORD BadThreadCount;
+	std::vector<THREADENTRY32> BadThreadVector;
+};
+
 void PrintUsage();
 
 void FindInjectedAll();
