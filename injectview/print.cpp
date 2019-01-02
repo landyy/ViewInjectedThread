@@ -6,7 +6,7 @@ void PrintBadThreads(MalicousThreads MalThreads) {
 	using namespace std;
 
 	if (MalThreads.BadThreadCount == 0) {
-		wcout << L"No Malicious Threads Detected" << endl;
+		wcout << L"[!] No Malicious Threads Detected" << endl;
 
 		wcout << L"Press Any Key To Continue...";
 		getchar();
