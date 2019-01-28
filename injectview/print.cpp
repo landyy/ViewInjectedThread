@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "helper.h"
 
-void PrintBadThreads(MalicousThreads MalThreads) {
+void PrintBadThreads(MalicousThreads MalThreads, MalicousMemory MalMem) {
 
 	using namespace std;
 
@@ -23,6 +23,15 @@ void PrintBadThreads(MalicousThreads MalThreads) {
 			wcout << L"Thread ID:" << te32.th32ThreadID << endl;
 			wcout << endl;
 
+		}
+
+		wcout << MalThreads.BadThreadCount << L" Potentially Malicious Threads Detected." << endl;
+		wcout << endl;
+
+		for (unsigned char* LocalMem : MalMem.BadMemoryVector) {
+			wcout << L"Process ID: " << MalMem.Pid << endl;
+			wcout << L"Memory Address with RWX:" <<  << endl;
+			wcout << endl;
 		}
 
 		wcout << L"Press Any Key To Continue...";

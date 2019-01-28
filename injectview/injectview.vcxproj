@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="injectmem.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="injectview.h" />
     <ClInclude Include="helper.h" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="helper.cpp" />
+    <ClCompile Include="injectmem.cpp" />
     <ClCompile Include="injectview.cpp" />
     <ClCompile Include="print.cpp" />
     <ClCompile Include="stdafx.cpp">

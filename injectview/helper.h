@@ -6,6 +6,18 @@ struct MalicousThreads
 	std::vector<THREADENTRY32> BadThreadVector;
 };
 
+struct VirtualMem
+{
+	DWORD BadMemoryCount;
+	DWORD Pid;
+	std::vector<unsigned char*> LocalMem;
+};
+
+struct MalicousMemory
+{
+	std::vector<VirtualMem> BadMemoryVector;
+};
+
 void PrintUsage();
 
 void FindInjectedAll();
