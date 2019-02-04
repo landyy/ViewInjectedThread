@@ -68,7 +68,6 @@ VirtualMem FindInjectedMem(DWORD Pid) {
 			std::wcout << "[!] Memory Region with RWE Deteteced at" << LocalMem << ". Potentially Malicous." << std::endl;
 			#endif
 
-			VirtMem.BadMemoryCount += 1;
 			VirtMem.LocalMem.push_back(LocalMem);
 
 		}

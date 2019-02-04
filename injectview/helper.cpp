@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include "injectview.h"
+#include "injectmem.h"
 #include "print.h"
 
 void PrintUsage() {
@@ -14,6 +15,8 @@ void FindInjectedAll() {
 	pe32.dwSize = sizeof(PROCESSENTRY32);
 	MalicousThreads TempMalThreads;
 	MalicousThreads FinalMalThreads;
+	VirtualMem TempVirtualMem;
+	MalicousMemory FinalMem;
 
 	FinalMalThreads.BadThreadCount = 0;
 	TempMalThreads.BadThreadCount = 0;
@@ -25,14 +28,22 @@ void FindInjectedAll() {
 		if (pe32.th32ProcessID != 0) {
 
 			//create a list using vectors to keep track of all the bad threads
+			//THIS NEEDS TO BE TESTED A LOT MORE
+			// 1.) what if the first vector for virtual mem vector is empty but the next one is not
+			// 2.) does this actually work?
+			// 3.) test with multiple injection
 			TempMalThreads = FindInjectedThread(pe32.th32ProcessID);
 			FinalMalThreads.BadThreadVector.insert(FinalMalThreads.BadThreadVector.end(), TempMalThreads.BadThreadVector.begin(), TempMalThreads.BadThreadVector.end());
+
+			//look at the memory region for the process
+			TempVirtualMem = FindInjectedMem(pe32.th32ProcessID);
+			FinalMem.BadMemoryVector.push_back(TempVirtualMem);
 		}
 
 	} while (Process32Next(ProcessSnap, &pe32));
 
 	//Now print the results
-	PrintBadThreads(FinalMalThreads);
+//	PrintBadThreads(FinalMalThreads);
 
 }
 

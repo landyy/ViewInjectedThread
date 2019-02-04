@@ -8,7 +8,7 @@ struct MalicousThreads
 
 struct VirtualMem
 {
-	DWORD BadMemoryCount;
+	
 	DWORD Pid;
 	std::vector<unsigned char*> LocalMem;
 };
