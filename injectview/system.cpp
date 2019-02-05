@@ -80,7 +80,7 @@ DWORD GetProcessIntegrity() {
 	else if (IntegrityLevel >= SECURITY_MANDATORY_SYSTEM_RID)
 	{
 		// System Integrity
-		wcout << L"[!] Process is already SYSTEM. Skipping SYSTEM elevation" << endl;
+		//wcout << L"[!] Process is already SYSTEM. Skipping SYSTEM elevation" << endl;
 		GlobalFree(TokenIntegrity);
 		return 0;
 	}

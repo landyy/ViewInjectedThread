@@ -4,8 +4,17 @@
 #include "injectmem.h"
 #include "print.h"
 
+
 void PrintUsage() {
-	std::wcout << L"Usage: " << L"./injectview" << L" [-ph]" << std::endl;
+	std::cout << "Usage: " << "./injectview" << " [-pha]" << std::endl;
+	std::cout << "Injectview is a tool geared towards active blue team engagements to find"
+			  << "and located processes that may have been injected by another process. This"
+			  << "tool uses mutiple method to detect a process that has been injected. For"
+			  << "more information, visit https://github.com/landyy/ViewInjectedThread for"
+			  << "more information.\n";
+	std::cout << "-h --help    " << "Displays this help message\n";
+	std::cout << "-a --all     " << "Examines all the processes that are NOT protected.\n";
+	std::cout << "-p --pid     " << "Examines a specific process identified by its PID.\n";
 }
 
 void FindInjectedAll() {

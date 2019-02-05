@@ -45,8 +45,8 @@ void PrintBadThreads(MalicousThreads MalThreads, MalicousMemory MalMem) {
 		}
 	}
 
-		wcout << L"Press Any Key To Continue...";
-		getchar();
+		//wcout << L"Press Any Key To Continue...";
+		//getchar();
 		return;
 	
 
