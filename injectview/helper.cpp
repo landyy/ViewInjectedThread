@@ -144,3 +144,23 @@ BOOL IsInAddressSpace(DWORD Pid, DWORD ThreadAddress) {
 
 	return false;
 }
+
+DWORD GetPIDByName(const wchar_t *ProcessName) {
+	HANDLE ProcessSnap = NULL;
+	PROCESSENTRY32 pe32 = { 0 };
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+
+	ProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+
+	do {
+
+		if (wcscmp(pe32.szExeFile,ProcessName) == 0) {
+
+			return pe32.th32ProcessID;
+			
+		}
+
+	} while (Process32Next(ProcessSnap, &pe32));
+
+	return 0;
+}

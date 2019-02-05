@@ -25,3 +25,5 @@ void FindInjectedAll();
 BOOL IsProtectedProcess(DWORD Pid);
 
 BOOL IsInAddressSpace(DWORD Pid, DWORD ThreadAddress);
+
+DWORD GetPIDByName(const wchar_t *ProcessName);

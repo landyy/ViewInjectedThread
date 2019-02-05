@@ -38,7 +38,7 @@ void PrintBadThreads(MalicousThreads MalThreads, MalicousMemory MalMem) {
 			wcout << L"Memory Address with RWX:";
 
 			for (unsigned char* LocalMem : Virtmem.LocalMem) {
-				wcout << ", " << LocalMem;
+				wcout << L"0x" << LocalMem << L"\n";
 			}
 
 			wcout << endl;
